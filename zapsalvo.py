@@ -48,7 +48,7 @@ def bot():
         msg = todas_as_msg_texto[-1]
 
         ###### Processa a mensagenm na API da Ia
-        chave_api = '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'
+        chave_api = 'API DO CHAT GPT'
         editacodigo = '9M1ujEdimQDYACbr5mXeUlVM8FMIj44z'
         sistema = 'explique tudo sobre o hotel Copacabana Palace. Endereço: Av. Atlântica, 1111 - Copacabana, Rio de Janeiro - RJ, 22021-111. Telefone: (21) 2548-1111, reservas por email: reserva@email.com, aceitamos todas as formas de pagamento. OBS: responda com no maximo com 15 palavras'
         resposta = requests.get("https://editacodigo.com.br/gpt/index.php", params={'pagina': editacodigo,'sistema': sistema, 'chave_api': chave_api, 'mensagem_usuario': msg}, headers=agent)
