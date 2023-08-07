@@ -46,42 +46,26 @@ def bot():
         todas_as_mensagens = driver.find_elements(By.CLASS_NAME,msg_cliente)
         todas_as_msg_texto = [e.text for e in todas_as_mensagens]
         msg = todas_as_msg_texto[-1]
-        print(msg)
-
-
 
         ###### Processa a mensagenm na API da Ia
-
-        openai.api_key = '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'
-
-        response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=msg,
-        temperature=1,
-        max_tokens=256,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-        )
-        time.sleep(30)
-        resposta = response['choices'][0]['text']
+        chave_api = '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'
+        editacodigo = '9M1ujEdimQDYACbr5mXeUlVM8FMIj44z'
+        sistema = 'explique tudo sobre o hotel Copacabana Palace. Endereço: Av. Atlântica, 1111 - Copacabana, Rio de Janeiro - RJ, 22021-111. Telefone: (21) 2548-1111, reservas por email: reserva@email.com, aceitamos todas as formas de pagamento. OBS: responda com no maximo com 15 palavras'
+        resposta = requests.get("https://editacodigo.com.br/gpt/index.php", params={'pagina': editacodigo,'sistema': sistema, 'chave_api': chave_api, 'mensagem_usuario': msg}, headers=agent)
+        time.sleep(3)
+        resposta = resposta.text
 
         ###### Envia a mensagem para o cliente ######
         campo_de_texto = driver.find_element(By.XPATH, caixa_msg)
         campo_de_texto.click()
         time.sleep(3)
         campo_de_texto.send_keys(resposta, Keys.ENTER)
+        time.sleep(2)
 
 
 
         ######### Volta para a tela inicial ##########
-
-
-     
-
-
-        
-
+        webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
 
     except:
         print('buscando novas notificações')
