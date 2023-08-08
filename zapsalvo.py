@@ -5,8 +5,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import requests
-import openai
-
 
 dir_path = os.getcwd()
 chrome_options2 = Options()
@@ -62,8 +60,6 @@ def bot():
         campo_de_texto.send_keys(resposta, Keys.ENTER)
         time.sleep(2)
 
-
-
         ######### Volta para a tela inicial ##########
         webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
 
@@ -71,5 +67,4 @@ def bot():
         print('buscando novas notificações')
 
 while True:
-
     bot()      
